@@ -1,3 +1,5 @@
+package net.skeletonjack.projectEuler
+
 object One {
 
   def isMultipleOf(divisor: Int)(multiple: Int): Boolean = {

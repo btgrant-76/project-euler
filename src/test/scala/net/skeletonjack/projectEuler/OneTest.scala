@@ -1,3 +1,5 @@
+package net.skeletonjack.projectEuler
+
 import org.scalatest.FunSuite
 
 class OneTest extends FunSuite {
