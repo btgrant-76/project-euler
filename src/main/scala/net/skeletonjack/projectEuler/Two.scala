@@ -2,12 +2,12 @@ package net.skeletonjack.projectEuler
 
 object Two {
 
-  def generateFibonacciTerms(stopGeneratingBefore: Int, filter: Int => Boolean = _ => true): List[Int] = {
+  def generateFibonacciTerms(stopCollectingAt: Int, filter: Int => Boolean = _ => true): List[Int] = {
 
     def accumulateFibonacciTerms(currentTerm: Int, previousTerm: Int, collectedTerms: List[Int]): List[Int] = {
       val newTerm = currentTerm + previousTerm
 
-      if (newTerm >= stopGeneratingBefore)
+      if (newTerm >= stopCollectingAt)
         collectedTerms
       else
         accumulateFibonacciTerms(newTerm, currentTerm, if (filter(newTerm))
