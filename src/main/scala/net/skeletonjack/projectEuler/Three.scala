@@ -9,11 +9,11 @@ object Three {
   def isPrime(number: Long): Boolean = {
     println("testing primacy of " + number)
     // TODO optimization; try w/out
-    if (primes.contains(number)) {
-      true
-    } else if (nonPrimes.contains(number)) {
-      false
-    } else {
+//    if (primes.contains(number)) {
+//      true
+//    } else if (nonPrimes.contains(number)) {
+//      false
+//    } else {
       if (number == 1) {
         false
       } else {
@@ -31,7 +31,7 @@ object Three {
         primes.add(number)
         true
       }
-    }
+//    }
 
     //      !(2L until number).exists(x => number % x == 0)
   }
@@ -58,6 +58,22 @@ object Three {
     accumulateFactors(1L, List())
   }
 
+  def calculateFactorsWithShortCutting(number: Long): List[Long] = {
+
+    def accumulateFactors(potentialFactor: Long, factors: List[Long]): List[Long] = {
+      if (factors.contains(potentialFactor))
+        factors
+      else if (number % potentialFactor == 0) {
+        val pairedFactor = number / potentialFactor
+        accumulateFactors(potentialFactor + 1, factors :+ potentialFactor :+ pairedFactor)
+      } else
+        accumulateFactors(potentialFactor + 1, factors)
+    }
+
+    accumulateFactors(1L, List()).sorted
+  }
+
+
   def calculatePrimeFactors(start: Long, end: Long): List[Long] = {
     val startTime = System.currentTimeMillis()
 
@@ -68,6 +84,14 @@ object Three {
 
 //    primes.toList.sorted
     factors.toList.sorted
+  }
+
+  def findPrimeNumbers(haystack: List[Long]): List[Long] = {
+    haystack.toSet.par.filter(isPrime).toList.sorted
+  }
+
+  def calculatePrimeFactorsOptimized(number: Long): List[Long] = {
+    calculateFactorsWithShortCutting(number).par.filter(isPrime).toList.sorted
   }
 
   /*
