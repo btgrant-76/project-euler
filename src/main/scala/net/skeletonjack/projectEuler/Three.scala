@@ -1,47 +1,83 @@
 package net.skeletonjack.projectEuler
 
+// TODO tracking non-primes we've already calculated would speed things up significantly
 object Three {
 
+  private val primes: collection.mutable.Set[Long] = collection.mutable.Set.empty[Long]
+  private val nonPrimes: collection.mutable.Set[Long] = collection.mutable.Set.empty[Long]
+
   def isPrime(number: Long): Boolean = {
-    println("testing " + number)
-    if (number == 1)
-      false
-    else {
-      var x = 2L
-
-      while (x < number) {
-        if (number % x == 0) {
-          return false
-        }
-
-        x += 1L
-      }
+    println("testing primacy of " + number)
+    // TODO optimization; try w/out
+    if (primes.contains(number)) {
       true
+    } else if (nonPrimes.contains(number)) {
+      false
+    } else {
+      if (number == 1) {
+        false
+      } else {
+        // TODO try recursion & val
+        var x = 2L
+
+        while (x < number) {
+          if (number % x == 0) {
+            nonPrimes.add(number)
+            return false
+          }
+
+          x += 1L
+        }
+        primes.add(number)
+        true
+      }
     }
-//      !(2L until number).exists(x => number % x == 0)
+
+    //      !(2L until number).exists(x => number % x == 0)
   }
 
-  def calculateFactors(start: Long, end: Long): List[Long] = {
-    val possibleFactors = start to end
+  def calculateFactors(number: Long): List[Long] = {
+//    val possibleFactors = 1L to number // FIXME range won't work with large numbers
 
-    // FIXME There's a bug here
-    possibleFactors.foldLeft(List[Long]()) {(factors: List[Long], nextPotentialFactor: Long) =>
-      if (end % nextPotentialFactor == 0)
-        factors :+ nextPotentialFactor
+    def accumulateFactors(potentialFactor: Long, factors: List[Long]): List[Long] = {
+      if (number == potentialFactor)
+        factors :+ potentialFactor
+      else if (number % potentialFactor == 0)
+        accumulateFactors(potentialFactor + 1, factors :+ potentialFactor)
       else
-        factors.toSet.toList
+        accumulateFactors(potentialFactor + 1, factors)
     }
+
+    // FIXME There's a bug here; for each possibleFactor, we need to calculate starting at 1
+//    possibleFactors.foldLeft(List[Long]()) {(factors: List[Long], nextPotentialFactor: Long) =>
+//      if (number % nextPotentialFactor == 0)
+//        factors :+ nextPotentialFactor
+//      else
+//        factors/*.toSet.toList*/
+//    }
+    accumulateFactors(1L, List())
   }
 
   def calculatePrimeFactors(start: Long, end: Long): List[Long] = {
     val startTime = System.currentTimeMillis()
-    val factors = calculateFactors(start, end).par
-    val primes = factors.filter(isPrime)
+
+    val factors = (start to end)/*.par*/.flatMap{ x: Long => calculateFactors(x) }.toSet.par.filter(isPrime)
+//    val primes = factors.filter(isPrime)
 
     println(s"elapsed ${System.currentTimeMillis() - startTime} calculating primes for factors between $start and $end")
 
-    primes.toList
+//    primes.toList.sorted
+    factors.toList.sorted
   }
+
+  /*
+
+[info] ThreeTest:
+[info] - 3, 11 & 17 are prime
+6857
+[info] ThreeTest:
+[info] - 3, 11 & 1
+   */
 
   def main(args: Array[String]) {
     val start = System.currentTimeMillis()

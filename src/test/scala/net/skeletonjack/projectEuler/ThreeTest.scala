@@ -16,22 +16,22 @@ class ThreeTest extends FunSuite {
   }
 
   test("1 & 3 are factors of 3") {
-    val factorsOf3 = Three.calculateFactors(1, 3)
+    val factorsOf3 = Three.calculateFactors(3)
     assert(List(1, 3) === factorsOf3)
   }
 
   test("1, 2, 4 & 8 are factors of 8") {
-    val factorsOf8 = Three.calculateFactors(1, 8)
+    val factorsOf8 = Three.calculateFactors(8)
     assert(factorsOf8 === List(1, 2, 4, 8))
   }
 
   test("1, 3, 5 & 15 are factors of 15") {
-    val factorsOf15 = Three.calculateFactors(1, 15)
+    val factorsOf15 = Three.calculateFactors(15)
     assert(factorsOf15 === List(1, 3, 5, 15))
   }
 
   test("The prime factors of 13195 are 5, 7, 13 and 29") {
-    val primeFactorsOf13195 = Three.calculatePrimeFactors(1, 13195)
+    val primeFactorsOf13195 = Three.calculatePrimeFactors(13195, 13195)
     assert(primeFactorsOf13195 === List(5, 7, 13, 29))
   }
 
@@ -39,9 +39,16 @@ class ThreeTest extends FunSuite {
     assert(Three.isPrime(577204368781L))
   }
 
-  test("Stuff") {
+  ignore("Stuff") {
     val primeFactors = Three.calculatePrimeFactors(577204368780L, 577204368781L)
     println(primeFactors.size)
+  }
+
+  test("do the math") {
+
+                        val primeFactors= Three.calculatePrimeFactors(600851475143L, 600851475143L)
+    println(primeFactors.reverse.head)
+
   }
 
 
