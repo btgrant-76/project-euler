@@ -35,6 +35,15 @@ class ThreeTest extends FunSuite {
     assert(factors === Three.calculateFactors(600851475143L))
   }
 
+  test("Other factors ...") {
+    // http://www.mathsisfun.com/numbers/factors-all-tool.html#calc
+    assert(Three.calculateFactors(5000) === List(1, 2, 4, 5, 8, 10, 20, 25, 40, 50, 100, 125, 200, 250, 500, 625, 1000, 1250, 2500, 5000))
+    assert(Three.calculatePrimeFactors(5000) === List(2, 5))
+
+    assert(Three.calculateFactors(56789000) === List(1, 2, 4, 5, 8, 10, 20, 25, 40, 50, 100, 109, 125, 200, 218, 250, 436, 500, 521, 545, 872, 1000, 1042, 1090, 2084, 2180, 2605, 2725, 4168, 4360, 5210, 5450, 10420, 10900, 13025, 13625, 20840, 21800, 26050, 27250, 52100, 54500, 56789, 65125, 104200, 109000, 113578, 130250, 227156, 260500, 283945, 454312, 521000, 567890, 1135780, 1419725, 2271560, 2839450, 5678900, 7098625, 11357800, 14197250, 28394500, 56789000))
+    assert(Three.calculatePrimeFactors(56789000) === List(2, 5, 109, 521))
+  }
+
   test("The prime factors of 13195 are 5, 7, 13 and 29") {
     val primeFactorsOf13195 = List(5, 7, 13, 29)
     assert(primeFactorsOf13195 === Three.calculatePrimeFactors(13195))
