@@ -26,4 +26,22 @@ object Four {
     halves._1.equals(halves._2.reverse)
   }
 
+  def calculateMultiples(start: Int, end: Int, multiples: List[Int] = List(), multiplesFilter: Int => Boolean = {x: Int => true}): List[Int] = {
+    if (start == end)
+      multiples
+    else {
+      val curMultiples: List[Int] = (start + 1 to end).foldLeft(multiples) { (multiples: List[Int], num: Int) =>
+        multiples :+ (num * start)
+      }.filter(multiplesFilter)
+      val filteredMultiples = curMultiples.filter(multiplesFilter)
+
+      calculateMultiples(start + 1, end, filteredMultiples, multiplesFilter)
+    }
+  }
+
+  def main(args: Array[String]) {
+    val largestPalindromicNumber = calculateMultiples(100, 999, multiplesFilter = isPalindromic).max
+    println(s"Largest palindromic multiple for all numbers with three digits is $largestPalindromicNumber")
+  }
+
 }
