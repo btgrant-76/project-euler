@@ -29,5 +29,12 @@ class FiveTest extends FunSuite {
     assert(numberIsDivisibleByAllDivisors(2520, (1 to 10).toList))
   }
 
+  test("2520 is the smallest multiple of all numbers from 1 to 10") {
+    assert(2520 === calculateSmallestMultipleOfAllNumbers(1, 10))
+  }
+
+  test("SOLUTION:  232792560 is the smallest number divisible by all numbers from 1 to 20") {
+    assert(232792560 === calculateSmallestMultipleOfAllNumbers(1, 20))
+  }
 
 }
