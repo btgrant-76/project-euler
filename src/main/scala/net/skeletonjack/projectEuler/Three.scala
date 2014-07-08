@@ -18,11 +18,10 @@ object Three {
         recursivelySearchForPrimes(x + 1)
     }
 
-    if (number == 1) {
+    if (number == 1)
       false
-    } else {
+    else
       recursivelySearchForPrimes(2L)
-    }
   }
 
   def calculateFactors(number: Long): List[Long] = {
