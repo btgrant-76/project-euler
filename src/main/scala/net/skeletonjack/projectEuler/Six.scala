@@ -37,7 +37,7 @@ object Six {
 
 
   def main(args: Array[String]) {
-    println(s"The difference between the sum of the squares of the first one hundred nautural numbers " +
+    println(s"The difference between the sum of the squares of the first one hundred natural numbers " +
             s"and the square of the sum is ${differenceBetweenSumOfSquaresAndSquareOfSum(100)}")
   }
 
