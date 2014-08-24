@@ -17,4 +17,23 @@ object Five {
     }
   }
 
+  def calculateSmallestMultipleOfAllNumbers(start: Int, end: Int): Int = {
+
+    val numbers = (start until end).toList
+
+    def countUp(number: Int): Int = {
+      val next = number * end
+      if (numberIsDivisibleByAllDivisors(next, numbers))
+        next
+      else
+        countUp(number + 1)
+    }
+
+    countUp(1)
+  }
+
+  def main(args: Array[String]) {
+    println(calculateSmallestMultipleOfAllNumbers(1, 20) + " is the smallest number divisible by all numbers from 1 to 20")
+  }
+
 }
