@@ -110,7 +110,7 @@ class EightTest extends FunSuite {
   }
 
   test("Collecting the largest product with smaller values results in the given product being added") {
-    val starter = SortedMap(1 -> List(1, 1, 1), 2 -> List(1, 1, 2))
+    val starter = SortedMap(1L -> List(1, 1, 1), 2L -> List(1, 1, 2))
     val result = collectLargestProducts(starter, (5, List(1, 1, 5)))
 
     assert(result.size === 3)
@@ -118,7 +118,7 @@ class EightTest extends FunSuite {
   }
 
   test("Collecting the largest product with larger values results in the given product being discarded ") {
-    val starter = SortedMap(1 -> List(1, 1, 1), 5 -> List(1, 1, 5))
+    val starter = SortedMap(1L -> List(1, 1, 1), 5L -> List(1, 1, 5))
     val result = collectLargestProducts(starter, (2, List(1, 1, 2)))
 
     assert(result.size === 2)
@@ -130,7 +130,7 @@ class EightTest extends FunSuite {
     "is (5832, List(9, 9, 8, 9)") {
     val result = createAdjacencies(reallyBigNumber, 4)
       .map(pairProductWithFactors)
-      .foldLeft(SortedMap[Int, List[Int]]())(collectLargestProducts)
+      .foldLeft(SortedMap[Long, List[Int]]())(collectLargestProducts)
 
     val largest = result.takeRight(1).head
 
@@ -138,13 +138,13 @@ class EightTest extends FunSuite {
     assert(largest._2 === List(9, 9, 8, 9))
   }
 
-  test("Possible Solution") {
+  test(s"SOLUTION:  Largest product of 13, adjacent numbers in $reallyBigNumber is 23,514,624,000") {
     val result = createAdjacencies(reallyBigNumber, 13)
       .map(pairProductWithFactors)
-      .foldLeft(SortedMap[Int, List[Int]]())(collectLargestProducts)
+      .foldLeft(SortedMap[Long, List[Int]]())(collectLargestProducts)
 
     val largest = result.takeRight(1).head
-    println(s"the largest value is ${largest._1} for the sequence ${largest._2.mkString("")}")
+    assert(largest._1 === 23514624000L)
   }
 
 }

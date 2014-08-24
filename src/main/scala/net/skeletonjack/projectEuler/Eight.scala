@@ -46,9 +46,9 @@ object Eight {
     accumulateAdjacencies(stringOfDigits, adjacencySize, List())
   }
 
-  def calculateProduct(factors: List[Int]): Int = {
+  def calculateProduct(factors: List[Int]): Long = {
 
-    def accumulateProduct(product: Int, factors: List[Int]): Int = factors match {
+    def accumulateProduct(product: Long, factors: List[Int]): Long = factors match {
       case head :: tail =>  accumulateProduct(head * product, tail)
       case Nil => product
     }
@@ -59,9 +59,9 @@ object Eight {
       accumulateProduct(1, factors)
   }
 
-  def pairProductWithFactors(factors: List[Int]): (Int, List[Int]) = (calculateProduct(factors) -> factors)
+  def pairProductWithFactors(factors: List[Int]): (Long, List[Int]) = (calculateProduct(factors) -> factors)
 
-  def collectLargestProducts(collect: SortedMap[Int, List[Int]], source: (Int, List[Int])): SortedMap[Int, List[Int]] = {
+  def collectLargestProducts(collect: SortedMap[Long, List[Int]], source: (Long, List[Int])): SortedMap[Long, List[Int]] = {
     if (collect.isEmpty || source._1 > collect.keySet.takeRight(1).head)
       collect + source
     else
