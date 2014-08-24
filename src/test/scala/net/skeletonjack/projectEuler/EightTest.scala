@@ -145,6 +145,13 @@ class EightTest extends FunSuite {
 
     val largest = result.takeRight(1).head
     assert(largest._1 === 23514624000L)
+
+  }
+
+  test("Scala one-liner from forum using only built-in functions") {
+    def solve(windowSize: Int) = reallyBigNumber.sliding(windowSize).map(_.map(_.asDigit.toLong).product).max
+
+    assert(solve(13) === 23514624000L)
   }
 
 }
