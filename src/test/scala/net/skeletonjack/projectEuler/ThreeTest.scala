@@ -5,17 +5,6 @@ import Three._
 
 class ThreeTest extends FunSuite {
 
-  test("3, 11 & 17 are prime") {
-    assert(isPrime(3))
-    assert(isPrime(11))
-    assert(isPrime(17))
-  }
-
-  test("4 & 38 are not prime") {
-    assert(!isPrime(4))
-    assert(!isPrime(38))
-  }
-
   test("1 & 3 are factors of 3") {
     val factorsOf3 = List(1, 3)
     assert(factorsOf3 === calculateFactors(3))

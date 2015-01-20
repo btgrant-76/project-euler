@@ -1,7 +1,5 @@
 package net.skeletonjack.projectEuler
 
-import Three.isPrime
-
 /**
  * By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the
  * 6th prime is 13.
@@ -12,18 +10,16 @@ object Seven {
 
   def findTheNthPrime(n: Int): Int = {
 
-    def countUpPrimes(curNum: Int, primes: List[Int]): Int = {
+    def countUpPrimes(curNum: Int, primes: List[Int]): List[Int] = {
       if (primes.size == n)
-        primes.reverse.head
-      else {
-        if (isPrime(curNum))
-          countUpPrimes(curNum + 1, primes :+ curNum)
-        else
-          countUpPrimes(curNum + 1, primes)
-      }
+        primes
+      else if (isPrime(curNum))
+        countUpPrimes(curNum + 1, primes :+ curNum)
+      else
+        countUpPrimes(curNum + 1, primes)
     }
 
-    countUpPrimes(1, List())
+    countUpPrimes(1, List()).reverse.head
   }
 
   def main(args: Array[String]) {

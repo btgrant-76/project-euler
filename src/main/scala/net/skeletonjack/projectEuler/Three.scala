@@ -7,23 +7,6 @@ package net.skeletonjack.projectEuler
  */
 object Three {
 
-  def isPrime(number: Long): Boolean = {
-
-    def recursivelySearchForPrimes(x: Long): Boolean = {
-      if (number == x)
-        true
-      else if (number % x == 0)
-        false
-      else
-        recursivelySearchForPrimes(x + 1)
-    }
-
-    if (number == 1)
-      false
-    else
-      recursivelySearchForPrimes(2L)
-  }
-
   def calculateFactors(number: Long): List[Long] = {
 
     def accumulateFactors(potentialFactor: Long, factors: List[Long]): List[Long] = {
