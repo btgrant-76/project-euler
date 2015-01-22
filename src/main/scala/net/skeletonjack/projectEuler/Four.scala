@@ -8,10 +8,6 @@ package net.skeletonjack.projectEuler
  */
 object Four {
 
-  def allProducts(start: Int, end: Int): List[Int] = {
-    List(1)
-  }
-
   def isPalindromic(number: Int): Boolean = {
     val numberString = number.toString
 
@@ -28,10 +24,10 @@ object Four {
 
   def calculateMultiples(start: Int, end: Int, multiples: List[Int] = List(), multiplesFilter: Int => Boolean = {x: Int => true}): List[Int] = {
     if (start == end)
-      multiples
+      multiples.reverse
     else {
       val curMultiples: List[Int] = (start + 1 to end).foldLeft(multiples) { (multiples: List[Int], num: Int) =>
-        multiples :+ (num * start)
+        (num * start) +: multiples
       }.filter(multiplesFilter)
       val filteredMultiples = curMultiples.filter(multiplesFilter)
 

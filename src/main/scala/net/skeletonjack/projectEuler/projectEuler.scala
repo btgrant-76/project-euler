@@ -1,5 +1,7 @@
 package net.skeletonjack
 
+import scala.annotation.tailrec
+
 package object projectEuler {
 
   def isPrime(number: Long): Boolean = {
@@ -21,6 +23,21 @@ package object projectEuler {
 
       recursivelySearchForPrimes(2L)
     }
+  }
+
+  def generatePrimes(goalEvaluator: (Long, Traversable[Long], Long) => Boolean)(goal: Long): Traversable[Long] = {
+
+    @tailrec
+    def accumulatePrimes(curNum: Long, accumulatedPrimes: Vector[Long]): Seq[Long] = {
+      if (goalEvaluator(curNum, accumulatedPrimes, goal))
+        accumulatedPrimes.toSeq
+      else if (isPrime(curNum))
+        accumulatePrimes(curNum + 1, accumulatedPrimes :+ curNum)
+      else
+        accumulatePrimes(curNum + 1, accumulatedPrimes)
+    }
+
+    accumulatePrimes(1L, Vector())
   }
 
 }

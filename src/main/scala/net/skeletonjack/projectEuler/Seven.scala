@@ -8,18 +8,11 @@ package net.skeletonjack.projectEuler
  */
 object Seven {
 
-  def findTheNthPrime(n: Int): Int = {
+  private def nthPrime = generatePrimes((curNum: Long, primes: Traversable[Long], goal: Long) =>
+      primes.size == goal)_
 
-    def countUpPrimes(curNum: Int, primes: List[Int]): List[Int] = {
-      if (primes.size == n)
-        primes
-      else if (isPrime(curNum))
-        countUpPrimes(curNum + 1, primes :+ curNum)
-      else
-        countUpPrimes(curNum + 1, primes)
-    }
-
-    countUpPrimes(1, List()).reverse.head
+  def findTheNthPrime(n: Int): Long = {
+    nthPrime(n).max
   }
 
   def main(args: Array[String]) {

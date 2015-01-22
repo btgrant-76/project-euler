@@ -7,18 +7,11 @@ package net.skeletonjack.projectEuler
  */
 object Ten extends App {
 
-  private def primesUnderNumber(number: Long): Seq[Long] = {
+  private def primesUnder = generatePrimes((curNum: Long, primes: Traversable[Long], goal: Long) =>
+    curNum == goal)_
 
-    def findPrimes(curNum: Long, primes: Set[Long]): Set[Long] = {
-      if (curNum == number)
-        primes
-      else if (isPrime(curNum))
-        findPrimes(curNum + 1, primes + curNum)
-      else
-        findPrimes(curNum + 1, primes)
-    }
-
-    findPrimes(1L, Set()).toSeq
+  private def primesUnderNumber(number: Long): Traversable[Long] = {
+    primesUnder(number)
   }
 
   def sumAllPrimesLessThanNumber(number: Long) = primesUnderNumber(number).sum
