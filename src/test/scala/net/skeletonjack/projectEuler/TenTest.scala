@@ -14,4 +14,8 @@ class TenTest extends FunSuite {
     assert(sumAllPrimesLessThanNumber(2000000) === 142913828922L)
   }
 
+  test("Obligatory call to main to boost test coverage") {
+    Ten.main(Array("5"))
+  }
+
 }

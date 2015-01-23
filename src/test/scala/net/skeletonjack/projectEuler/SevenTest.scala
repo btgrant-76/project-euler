@@ -14,4 +14,8 @@ class SevenTest extends FunSuite {
     assert(104743 === findTheNthPrime(10001))
   }
 
+  test("Obligatory call to main to boost test coverage") {
+    Seven.main(Array())
+  }
+
 }

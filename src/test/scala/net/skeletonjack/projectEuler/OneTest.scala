@@ -51,4 +51,7 @@ class OneTest extends FunSuite {
     assert(233168 === sumOfMultiples)
   }
 
+  test("Obligatory call to main to boost test coverage") {
+    One.main(Array())
+  }
 }

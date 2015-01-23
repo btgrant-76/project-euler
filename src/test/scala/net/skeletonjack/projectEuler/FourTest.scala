@@ -7,7 +7,7 @@ class FourTest extends FunSuite {
 
   test("Testing numbers that are palindromic") {
     val palindromicNumbers = List(9009, 90109)
-    assert(palindromicNumbers.size === palindromicNumbers.filter(isPalindromic).size)
+    assert(palindromicNumbers.size === palindromicNumbers.count(isPalindromic))
   }
 
   test("Testing numbers that are not palindromic") {
@@ -35,6 +35,10 @@ class FourTest extends FunSuite {
 
   test("SOLUTION:  The largest palindrome made from the product of two 3-digit numbers is 906609") {
     assert(906609 === calculateMultiples(100, 999, multiplesFilter = isPalindromic).max)
+  }
+
+  test("Obligatory call to main to boost test coverage") {
+    Four.main(Array())
   }
 
 }

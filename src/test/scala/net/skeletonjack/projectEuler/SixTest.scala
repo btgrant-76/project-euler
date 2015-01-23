@@ -24,4 +24,8 @@ class SixTest extends FunSuite {
     assert(differenceBetweenSumOfSquaresAndSquareOfSum(100) === 25164150)
   }
 
+  test("Obligatory call to main to boost test coverage") {
+    Six.main(Array())
+  }
+
 }

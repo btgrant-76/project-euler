@@ -24,4 +24,8 @@ class TwoTest extends FunSuite {
     assert(4613732 === generateFibonacciTerms(4000000, _ % 2 == 0).sum)
   }
 
+  test("Obligatory call to main to boost test coverage") {
+    Two.main(Array())
+  }
+
 }

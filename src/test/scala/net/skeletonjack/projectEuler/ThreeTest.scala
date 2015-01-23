@@ -43,4 +43,8 @@ class ThreeTest extends FunSuite {
     assert(6857 === calculatePrimeFactors(600851475143L).max)
   }
 
+  test("Obligatory call to main to boost test coverage") {
+    Three.main(Array())
+  }
+
 }

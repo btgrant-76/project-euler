@@ -4,9 +4,6 @@ import org.scalatest.FunSuite
 
 import Five._
 
-/**
- * Created by brian on 7/5/14.
- */
 class FiveTest extends FunSuite {
 
   test("8 is divisible by 2") {
@@ -35,6 +32,10 @@ class FiveTest extends FunSuite {
 
   test("SOLUTION:  232792560 is the smallest number divisible by all numbers from 1 to 20") {
     assert(232792560 === calculateSmallestMultipleOfAllNumbers(1, 20))
+  }
+
+  test("Obligatory call to main to boost test coverage") {
+    Five.main(Array())
   }
 
 }
