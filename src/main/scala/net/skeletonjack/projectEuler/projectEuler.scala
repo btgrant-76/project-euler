@@ -40,4 +40,17 @@ package object projectEuler {
     accumulatePrimes(1L, Vector())
   }
 
+  def calculateProduct(factors: Iterable[Int]): Long = {
+
+    def accumulateProduct(product: Long, factors: Iterable[Int]): Long = factors match {
+      case head :: tail =>  accumulateProduct(head * product, tail)
+      case Nil => product
+    }
+
+    if (factors.isEmpty)
+      0
+    else
+      accumulateProduct(1, factors)
+  }
+
 }
