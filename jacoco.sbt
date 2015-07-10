@@ -13,6 +13,10 @@ jacoco.settings
 
 parallelExecution in jacoco.Config := false
 
+fork := true
+
+javaOptions in jacoco.Config += "-ea"
+
 jacoco.outputDirectory in jacoco.Config := file("target/jacoco")
 
 jacoco.reportFormats in jacoco.Config := Seq(XMLReport("utf-8"), HTMLReport("utf-8"))
