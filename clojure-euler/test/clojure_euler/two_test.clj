@@ -1,6 +1,6 @@
 (ns clojure-euler.two-test
  (:require [clojure.test :refer :all]
-            [clojure-euler.two :refer :all]) )
+            [clojure-euler.two :refer :all]))
 
 (deftest two-solutions
   (testing "the sum of even numbers in the Fibonacci sequence less than 90 is 44")
