@@ -2,10 +2,10 @@
   (:require [clojure-euler.core :refer :all]))
 
 (defn- create-base-factor-set [number]
-  (def factors #{1 number})
+  (def factor-set #{1 number})
   (if (multiple? number 2)
-    (cons (cons factors 2) (/ number 2))
-    factors))
+    (cons (cons factor-set 2) (/ number 2))
+    factor-set))
 
 (defn- possibly-merge-factors-into-collection [number potential-factor accumulator]
   (if (multiple? number potential-factor)
@@ -22,5 +22,4 @@
 
 (defn largest-prime-factor [number]
   (first (reverse (sort (seq (filter #(prime? %) (factors number)))))))
-
 
